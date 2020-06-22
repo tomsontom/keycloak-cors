@@ -1,30 +1,23 @@
-# keycloak-cors project
+# quarkus - keycloak - CORS Problem
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This repo demonstrates a problem with CORS when using Quarkus and Keycloak
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+# How to run
 
-## Running the application in dev mode
+./mvnw -DAUTH_URL=https://my-keycloak/auth/realms/keycloak-cors -DAUTH_CREDENTIALS=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa compile quarkus:dev
 
-You can run your application in dev mode that enables live coding using:
-```
-./mvnw quarkus:dev
-```
+# Keycloak Setup
 
-## Packaging and running the application
+* Create a realm named "keycloak-cors"
+* In Realm Settings > Tokens: keep the defaults (Access Token Lifespan: 5 Mins) 
+* Create a client named quarkus
+* Generate a secrate and replace "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" from above with that
 
-The application can be packaged using `./mvnw package`.
-It produces the `keycloak-cors-1.0.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+# How to reproduce
 
-The application is now runnable using `java -jar target/keycloak-cors-1.0.0-SNAPSHOT-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your native executable with: `./target/keycloak-cors-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+* Open a Browser and open http://localhost:808
+* Open Developer-Tools
+* Hit Request-Button
+* Wait 5 Minutes (or at least the value you set for Access Token Lifespan)
+* Hit Request-Button
+* See the CORS-Error in your Console-View 
