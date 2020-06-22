@@ -13,6 +13,8 @@ This repo demonstrates a problem with CORS when using Quarkus and Keycloak
 
 ./mvnw -DAUTH_URL=https://my-keycloak/auth/realms/keycloak-cors -DAUTH_CREDENTIALS=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa compile quarkus:dev
 
+To demonstrate the problem it is ESSENTIAL that Keycloak is accessed through a different domain so if you run that locally you should add an alias in your /etc/hosts (or whatever it is called on your system!)
+
 # How to reproduce
 
 * Open a Browser and open http://localhost:8080
