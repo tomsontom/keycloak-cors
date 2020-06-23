@@ -19,7 +19,9 @@ This repo demonstrates a problem with CORS when using Quarkus and Keycloak
 * Hit Request-Button. The console should log something like this:
 * Wait 1 Minute (or at least the value you set for Access Token Lifespan)
 * Hit Request-Button
-* See the CORS-Error in your Console-View:
+* See the CORS-Error in your Console-View
+
+![Browser Console](https://github.com/tomsontom/keycloak-cors/raw/master/browser-console-log.png "Browser Console Log")
 
 # Environments
 
