@@ -4,22 +4,21 @@ This repo demonstrates a problem with CORS when using Quarkus and Keycloak
 
 # Keycloak Setup
 
-* Create a realm named "keycloak-cors"
-* In Realm Settings > Tokens: keep the defaults (Access Token Lifespan: 5 Mins) 
-* Create a client named quarkus
-* Generate a secrete and remember and replace "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" from below with that
+* `docker run --name keycloak-server -p 8081:8080 -e KEYCLOAK_USER=keycloak -e KEYCLOAK_PASSWORD=keycloak -e DB_VENDOR=h2 jboss/keycloak`
+* Import the provided `realm-export.json` in your local keycloak server
+* Open Client > Quarkus > Credentials and copy the "Secret" to replace `aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa` from below
 
 # How to run
 
-./mvnw -DAUTH_URL=https://my-keycloak/auth/realms/keycloak-cors -DAUTH_CREDENTIALS=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa compile quarkus:dev
-
-To demonstrate the problem it is ESSENTIAL that Keycloak is accessed through a different domain so if you run that locally you should add an alias in your /etc/hosts (or whatever it is called on your system!)
+`./mvnw -DAUTH_URL=https://localhost:8081/auth/realms/keycloak-cors -DAUTH_CREDENTIALS=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa compile quarkus:dev`
 
 # How to reproduce
 
 * Open a Browser and open http://localhost:8080
 * Open Developer-Tools
 * Hit Request-Button
-* Wait 5 Minutes (or at least the value you set for Access Token Lifespan)
+* Wait 1 Minute (or at least the value you set for Access Token Lifespan)
 * Hit Request-Button
 * See the CORS-Error in your Console-View 
+
+Reproduced in Firefox 77.0.1 and Chrome 83.0.4103.106
