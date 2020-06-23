@@ -6,7 +6,7 @@ This repo demonstrates a problem with CORS when using Quarkus and Keycloak
 
 * `docker run --name keycloak-server -p 8081:8080 -e KEYCLOAK_USER=keycloak -e KEYCLOAK_PASSWORD=keycloak -e DB_VENDOR=h2 jboss/keycloak`
 * Import the provided [realm-export.json](realm-export.json) in your local keycloak server
-* Open Client > Quarkus > Credentials and copy the "Secret" to replace `aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa` from below
+* Open Client > Quarkus > Credentials and copy the "Secret" to replace `aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa` in the command below
 
 # How to run
 
