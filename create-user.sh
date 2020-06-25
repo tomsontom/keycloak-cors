@@ -12,8 +12,7 @@ echo "address $3"
 echo "realm $4"
 
 bearer_token=$(curl $3/auth/realms/master/protocol/openid-connect/token -H 'Content-Type: application/x-www-form-urlencoded' -d "grant_type=password&username=$1&password=$2&client_id=admin-cli" | jq ".access_token")
-bearer_token_without_quotes="${bearer_token%"}"
-bearer_token_without_quotes="${bearer_token_without_quotes#"}"
+bearer_token_without_quotes=$(echo "$bearer_token" | sed "s/\"//g")
 
 while read line;
 do
